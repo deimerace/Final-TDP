@@ -1,6 +1,9 @@
-package Final.model;
+package sample.model;
 
-public class Visitante {
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+public class Visitante implements Serializable {
 
     //DATOS PERSONALES
     private String nombres;
@@ -27,7 +30,11 @@ public class Visitante {
     private boolean conjuntivitis;
     private String tempMedida;
 
-    public Visitante(String nombres, String apellidos, String id, String tipoID, String estadoCivil, char genero, String ciudad, String direccion, String telefono, String celular, boolean gusto, boolean garganta, boolean malestar, boolean diarrea, boolean fiebre, boolean tos, boolean erupcion, boolean conjuntivitis, String tempMedida) {
+    //FECHA DE VISITA
+    LocalDateTime fechaVisita;
+
+    //Constructor
+    public Visitante(String nombres, String apellidos, String id, String tipoID, String estadoCivil, char genero, String ciudad, String direccion, String telefono, String celular, boolean gusto, boolean garganta, boolean malestar, boolean diarrea, boolean fiebre, boolean tos, boolean erupcion, boolean conjuntivitis, String tempMedida, LocalDateTime fechaVisita) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.id = id;
@@ -47,8 +54,29 @@ public class Visitante {
         this.erupcion = erupcion;
         this.conjuntivitis = conjuntivitis;
         this.tempMedida = tempMedida;
+        this.fechaVisita = fechaVisita;
     }
 
+    public String toString(){
+        return "\n Nombre: " + nombres +
+                "\n Apellidos: " + apellidos +
+                "\n ID: " + id +
+                "\n Tipo ID: " + tipoID +
+                "\n Estado Civil: " + estadoCivil +
+                "\n Género: " + genero +
+                "\n Ciudad: " + ciudad +
+                "\n Dirección: " + direccion +
+                "\n Teléfono : " + telefono +
+                "\n Celular: " + celular +
+                "\n Síntomas:" +
+                "\n Gusto: " +  gusto + " Garganta: " +  garganta + " Malestar: " +  malestar + " Diarrea: " + diarrea +
+                "\n Fiebre: " + fiebre + " Tos:" + tos + " Erupción: " + erupcion + " Conjuntivitis: " +  conjuntivitis +
+                "\n Temperatura Medida: " + tempMedida + "Fecha y Hora: " + fechaVisita ;
+    }
+
+
+
+    //Getters & setters
     public String getNombres() {
         return nombres;
     }

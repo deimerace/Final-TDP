@@ -1,5 +1,6 @@
-package Final;
+package sample;
 
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
@@ -13,11 +14,20 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import sample.model.Visitante;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
+
+    ArrayList<Visitante> registroVisitantes = new ArrayList<Visitante>();
 
     @FXML private ImageView arrowPersona;
     @FXML private ImageView arrowLocalizacion;
@@ -41,6 +51,16 @@ public class Controller implements Initializable {
     @FXML private JFXTextField telefonoText;
     @FXML private JFXTextField celularText;
     @FXML private JFXTextField tempMedidaText;
+
+    @FXML private JFXCheckBox checBoxGusto;
+    @FXML private JFXCheckBox checBoxGarganta;
+    @FXML private JFXCheckBox checBoxMalestar;
+    @FXML private JFXCheckBox checBoxDiarrea;
+    @FXML private JFXCheckBox checBoxFiebre;
+    @FXML private JFXCheckBox checBoxTos;
+    @FXML private JFXCheckBox checBoxErupcion;
+    @FXML private JFXCheckBox checBoxConjuntivitis;
+
 
 
 
@@ -111,16 +131,88 @@ public class Controller implements Initializable {
     }
 
     public void onGuardar(MouseEvent event){
-        if (nombreText.getText().isEmpty()){
+        if ((nombreText.getText().isEmpty()) || (apellidosText.getText().isEmpty()) ||
+                (IDText.getText().isEmpty()) || (ciudadText.getText().isEmpty()) ||
+                (direccionText.getText().isEmpty()) || (telefonoText.getText().isEmpty()) ||
+                (celularText.getText().isEmpty()) || (tempMedidaText.getText().isEmpty())){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Guardar registro");
             alert.setContentText("Existen campos vacíos.");
             alert.showAndWait();
         }
+        else{
+            char valorGenero;
+            if (masculinoRadioButton.isDisable()){
+                valorGenero = 'M';
+            }
+            else{
+                valorGenero = 'F';
+            }
+            LocalDateTime fechaYHora = LocalDateTime.now();
+            Visitante temporal = new Visitante(nombreText.getText(),
+                    apellidosText.getText(), IDText.getText(), comboBoxTipoID.getValue(),
+                    comboBoxEstadoCivil.getValue(), valorGenero, ciudadText.getText(),
+                    direccionText.getText(), telefonoText.getText(), celularText.getText(),
+                    (checBoxGusto.isSelected()), (checBoxGarganta.isSelected()), (checBoxMalestar.isSelected()),
+                    (checBoxDiarrea.isSelected()), (checBoxFiebre.isSelected()), (checBoxTos.isSelected()),
+                    (checBoxErupcion.isSelected()), (checBoxConjuntivitis.isSelected()), tempMedidaText.getText(), fechaYHora);
+            System.out.println(temporal.toString());
+            registroVisitantes.add(temporal);
+
+            try{
+                ObjectOutputStream escribiendoEnArchivo = new ObjectOutputStream(new FileOutputStream("src/sample/archivo/datos.txt"));
+                escribiendoEnArchivo.writeObject(registroVisitantes);
+                escribiendoEnArchivo.close();
+
+            }catch (Exception e){
+
+            }
+
+            reiniciarRegistro();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Guardar registro");
+            alert.setContentText("Registro generado con éxito.");
+            alert.showAndWait();
+
+        }
+
     }
 
     public void onMostrarRegistro(MouseEvent event){
+        System.out.println("click en mostrar");
+        try{
+            ObjectInputStream leyendoEnArchivo = new ObjectInputStream(new FileInputStream("src/sample/archivo/datos.txt"));
+            ArrayList<Visitante> registroVisitantesLeido = (ArrayList<Visitante>) leyendoEnArchivo.readObject();
+            leyendoEnArchivo.close();
+            for (Visitante e : registroVisitantesLeido){
+                System.out.println(e.toString());
+            }
 
+        }catch (Exception e){
+
+        }
+
+    }
+
+    public void reiniciarRegistro(){
+        nombreText.clear();
+        apellidosText.clear();
+        IDText.clear();
+        comboBoxTipoID.setValue(null);
+        comboBoxEstadoCivil.setValue(null);
+        ciudadText.clear();
+        direccionText.clear();
+        telefonoText.clear();
+        celularText.clear();
+        checBoxGusto.setSelected(false);
+        checBoxGarganta.setSelected(false);
+        checBoxMalestar.setSelected(false);
+        checBoxDiarrea.setSelected(false);
+        checBoxFiebre.setSelected(false);
+        checBoxTos.setSelected(false);
+        checBoxErupcion.setSelected(false);
+        checBoxConjuntivitis.setSelected(false);
+        tempMedidaText.clear();
     }
 
 
