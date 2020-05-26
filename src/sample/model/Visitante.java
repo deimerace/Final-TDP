@@ -58,20 +58,21 @@ public class Visitante implements Serializable {
     }
 
     public String toString(){
-        return "\n Nombre: " + nombres +
-                "\n Apellidos: " + apellidos +
+        return "------------------------------------"+
+                "\n\n Nombre: " + nombres +
+                "\t Apellidos: " + apellidos +
                 "\n ID: " + id +
-                "\n Tipo ID: " + tipoID +
+                "\t Tipo ID: " + tipoID +
                 "\n Estado Civil: " + estadoCivil +
-                "\n Género: " + genero +
+                "\t Género: " + genero +
                 "\n Ciudad: " + ciudad +
-                "\n Dirección: " + direccion +
+                "\t Dirección: " + direccion +
                 "\n Teléfono : " + telefono +
-                "\n Celular: " + celular +
+                "\t Celular: " + celular +
                 "\n Síntomas:" +
-                "\n Gusto: " +  gusto + " Garganta: " +  garganta + " Malestar: " +  malestar + " Diarrea: " + diarrea +
-                "\n Fiebre: " + fiebre + " Tos:" + tos + " Erupción: " + erupcion + " Conjuntivitis: " +  conjuntivitis +
-                "\n Temperatura Medida: " + tempMedida + "Fecha y Hora: " + fechaVisita ;
+                "\n Gusto: " +  gusto + "\t Garganta: " +  garganta + "\t Malestar: " +  malestar + "\t Diarrea: " + diarrea +
+                "\n Fiebre: " + fiebre + "\t Tos:" + tos + "\t Erupción: " + erupcion + "\t Conjuntivitis: " +  conjuntivitis +
+                "\n Temperatura Medida: " + tempMedida + "\t Fecha y Hora: " + fechaVisita + "\n";
     }
 
 

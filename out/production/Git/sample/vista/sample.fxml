@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="695.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="695.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.control.Controller">
    <children>
       <AnchorPane prefHeight="60.0" prefWidth="400.0" style="-fx-background-color: #3b3b3b;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -22,7 +23,7 @@
                   <Separator prefWidth="200.0" visible="false" />
                   <ImageView fitHeight="46.0" fitWidth="44.0" onMouseClicked="#onPersona" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@media/icon-persona.png" />
+                        <Image url="@../media/icon-persona.png" />
                      </image>
                      <HBox.margin>
                         <Insets top="8.0" />
@@ -31,7 +32,7 @@
                   <Separator prefWidth="200.0" style="-fx-background-color: #3b3b3b;" visible="false" />
                   <ImageView fitHeight="46.0" fitWidth="44.0" onMouseClicked="#onLocalizacion" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@media/icons-ubicacion.png" />
+                        <Image url="@../media/icons-ubicacion.png" />
                      </image>
                      <HBox.margin>
                         <Insets top="8.0" />
@@ -40,7 +41,7 @@
                   <Separator prefWidth="200.0" visible="false" />
                   <ImageView fitHeight="46.0" fitWidth="44.0" onMouseClicked="#onSintomas" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@media/icon-clinicos.png" />
+                        <Image url="@../media/icon-clinicos.png" />
                      </image>
                      <HBox.margin>
                         <Insets top="8.0" />
@@ -49,7 +50,7 @@
                   <Separator prefWidth="200.0" visible="false" />
                   <ImageView fitHeight="46.0" fitWidth="44.0" onMouseClicked="#onGuardar" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@media/icon-guardar.png" />
+                        <Image url="@../media/icon-guardar.png" />
                      </image>
                      <HBox.margin>
                         <Insets top="8.0" />
@@ -58,7 +59,7 @@
                   <Separator prefWidth="200.0" visible="false" />
                   <ImageView fitHeight="46.0" fitWidth="44.0" onMouseClicked="#onMostrarRegistro" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@media/icon-lista.png" />
+                        <Image url="@../media/icon-lista.png" />
                      </image>
                      <HBox.margin>
                         <Insets top="8.0" />
@@ -67,7 +68,7 @@
                   <Separator prefWidth="200.0" visible="false" />
                   <ImageView fitHeight="46.0" fitWidth="44.0" onMouseClicked="#onExitButtonClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@media/icons-exit.png" />
+                        <Image url="@../media/icons-exit.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="20.0" right="10.0" top="8.0" />
@@ -136,17 +137,17 @@
          </children></AnchorPane>
       <ImageView fx:id="arrowPersona" fitHeight="18.0" fitWidth="44.0" layoutX="60.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@media/icon-arrow.png" />
+            <Image url="@../media/icon-arrow.png" />
          </image>
       </ImageView>
       <ImageView fx:id="arrowLocalizacion" fitHeight="18.0" fitWidth="44.0" layoutX="161.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@media/icon-arrow.png" />
+            <Image url="@../media/icon-arrow.png" />
          </image>
       </ImageView>
       <ImageView fx:id="arrowSintomas" fitHeight="18.0" fitWidth="44.0" layoutX="263.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@media/icon-arrow.png" />
+            <Image url="@../media/icon-arrow.png" />
          </image>
       </ImageView>
       <AnchorPane fx:id="paneLocalizacion" layoutY="83.0" prefHeight="317.0" prefWidth="695.0" style="-fx-background-color: #3b3b3b;" visible="false">
@@ -263,6 +264,15 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXCheckBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneRegistro" layoutY="83.0" prefHeight="317.0" prefWidth="695.0" style="-fx-background-color: #3b3b3b;" visible="false">
+         <children>
+            <JFXTextArea fx:id="TextAreaRegistro" layoutX="21.0" layoutY="14.0" prefHeight="285.0" prefWidth="658.0" style="-fx-background-color: white;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextArea>
          </children>
       </AnchorPane>
    </children>

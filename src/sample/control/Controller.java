@@ -1,9 +1,6 @@
-package sample;
+package sample.control;
 
-import com.jfoenix.controls.JFXCheckBox;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXRadioButton;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,6 +33,7 @@ public class Controller implements Initializable {
     @FXML private AnchorPane panePersona;
     @FXML private AnchorPane paneLocalizacion;
     @FXML private AnchorPane paneSintomas;
+    @FXML private AnchorPane paneRegistro;
 
     @FXML private JFXComboBox<String> comboBoxTipoID;
     @FXML private JFXComboBox<String> comboBoxEstadoCivil;
@@ -60,6 +58,8 @@ public class Controller implements Initializable {
     @FXML private JFXCheckBox checBoxTos;
     @FXML private JFXCheckBox checBoxErupcion;
     @FXML private JFXCheckBox checBoxConjuntivitis;
+
+    @FXML private JFXTextArea TextAreaRegistro;
 
 
 
@@ -104,6 +104,8 @@ public class Controller implements Initializable {
 
         paneSintomas.setVisible(false);
         arrowSintomas.setVisible(false);
+
+        paneRegistro.setVisible(false);
     }
 
     public void onLocalizacion(MouseEvent event){
@@ -116,6 +118,7 @@ public class Controller implements Initializable {
         paneSintomas.setVisible(false);
         arrowSintomas.setVisible(false);
 
+        paneRegistro.setVisible(false);
     }
 
     public void onSintomas(MouseEvent event){
@@ -128,6 +131,7 @@ public class Controller implements Initializable {
         paneSintomas.setVisible(true);
         arrowSintomas.setVisible(true);
 
+        paneRegistro.setVisible(false);
     }
 
     public void onGuardar(MouseEvent event){
@@ -179,14 +183,27 @@ public class Controller implements Initializable {
     }
 
     public void onMostrarRegistro(MouseEvent event){
+        panePersona.setVisible(false);
+        arrowPersona.setVisible(false);
+
+        paneLocalizacion.setVisible(false);
+        arrowLocalizacion.setVisible(false);
+
+        paneSintomas.setVisible(false);
+        arrowSintomas.setVisible(false);
+
+        paneRegistro.setVisible(true);
+
+        String mensaje = "";
         System.out.println("click en mostrar");
         try{
             ObjectInputStream leyendoEnArchivo = new ObjectInputStream(new FileInputStream("src/sample/archivo/datos.txt"));
             ArrayList<Visitante> registroVisitantesLeido = (ArrayList<Visitante>) leyendoEnArchivo.readObject();
             leyendoEnArchivo.close();
             for (Visitante e : registroVisitantesLeido){
-                System.out.println(e.toString());
+                mensaje = mensaje + e.toString();
             }
+            TextAreaRegistro.setText(mensaje);
 
         }catch (Exception e){
 
